@@ -29,7 +29,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="mytheme"
-      className={`${hindSiliguri.className} h-full antialiased text-base-content`}
+      className={`${hindSiliguri.className} h-full antialiased bg-base-200 text-base-content`}
     >
       <body className="min-h-full flex flex-col ">
         <Navbar categories = {categories}></Navbar>

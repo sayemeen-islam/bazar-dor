@@ -1,41 +1,19 @@
 import baseUrl from "@/services/baseUrl";
+import { IProduct } from "@/types/product";
 import { toBanglaNumber } from "@/utils/number";
 import { translateUnit } from "@/utils/translations";
 import Link from "next/link";
-import React from "react";
-import {
-  IoCaretDownSharp,
-  IoCaretUpSharp,
-  IoTriangleSharp,
-} from "react-icons/io5";
 import MarqueeText from "react-marquee-text";
-interface IMarquee {
-  id: number;
-  slug: string;
-  nameBn: string;
-  category: string;
-  categoryNameBn: string;
-  categoryIcon: string;
-  unit: string;
-  image: string;
-  today: number;
-  yesterday: number;
-  lastWeek: number;
-  lastMonth: number;
-  change: Change;
-}
 
-interface Change {
-  dir: string;
-  pct: number;
-}
+
+
 const Marquee = async () => {
   const res = await fetch(`${baseUrl}/products`);
-  const data: IMarquee[] = await res.json();
-  console.log("from marquee", data);
+  const data: IProduct[] = await res.json();
+  
 
   return (
-    <div className="border border-base-300">
+    <div className="border border-base-300 bg-base-100">
       <MarqueeText direction="right" duration={10}>
         {data.map((item) => (
           <div
