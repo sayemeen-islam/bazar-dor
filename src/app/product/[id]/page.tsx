@@ -8,7 +8,11 @@ import { FaChevronRight } from "react-icons/fa";
 //   product: IProduct;
 // }
 
-const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
+const ProductDetailsPage = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
   const { id } = await params;
   const res = await fetch(`${baseUrl}/products/${id}`);
   const data: IProduct = await res.json();
@@ -42,11 +46,11 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
   );
 
   return (
-    <main className="mx-auto max-w-6xl py-8  lg:py-12">
+    <main className="mx-auto max-w-6xl py-8  lg:py-12 mb-20">
       <div className="flex gap-2 pb-8  items-center text-sm">
-        <FaChevronRight size={10}/>
+        <FaChevronRight size={10} />
         <span>{data.categoryNameBn}</span>
-        <FaChevronRight size={10}/>
+        <FaChevronRight size={10} />
         <span>{data.nameBn}</span>
       </div>
       {/* Product overview */}
@@ -66,14 +70,14 @@ const ProductDetailsPage = async ({ params }: { params: { id: string } }) => {
             <p className="mt-2 text-[0.95rem] text-base-content">
               গতকালের তুলনায় আজ দাম{" "}
               <span className="font-bold">
-                {data.change.dir === "up" ? "বেড়েছে" : "কমেছে"}
+                {data.change.dir === "up" ? "বেড়েছে" : data.change.dir === "down"? "কমেছে":"বাড়েনি"}
               </span>{" "}
-              ·{" "}
+              <span className={`${data.change.dir === "flat" && 'hidden'}`}>·</span>{" "}
               {(data.change.dir === "up" &&
                 `${toBanglaNumber(data.today - data.yesterday)}`) ||
                 (data.change.dir === "down" &&
                   `${toBanglaNumber(data.yesterday - data.today)}`)}{" "}
-              টাকা
+              {data.change.dir !== "flat" && 'টাকা'}
             </p>
           </div>
 

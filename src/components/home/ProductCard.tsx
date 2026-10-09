@@ -3,11 +3,9 @@ import { toBanglaNumber } from "@/utils/number";
 import { translateUnit } from "@/utils/translations";
 import Link from "next/link";
 
-interface ProductCardProps {
-  product: IProduct;
-}
 
-export default function ProductCard({ product }: ProductCardProps) {
+
+export default function ProductCard({ product }: {product:IProduct}) {
   const { id, nameBn, image, unit, today, change } = product;
 
   const changeText =
@@ -27,20 +25,15 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/product/${id}`}
-      className="group block rounded-2xl border border-base-200
-                 bg-base-100 p-4 transition-all duration-200
-                 hover:-translate-y-1 hover:border-primary/50
-                 hover:shadow-lg focus-visible:outline-2
-                 focus-visible:outline-offset-2
-                 focus-visible:outline-primary"
+      className="group block rounded-2xl border border-base-200 bg-base-100 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+
     >
       {/* Product information */}
       <div className="flex items-center gap-3">
         {/* Product emoji */}
         <div
-          className="flex size-20 shrink-0 items-center justify-center
-                     rounded-xl bg-base-200 transition-colors
-                     group-hover:bg-primary/10"
+          className="flex size-20 shrink-0 items-center justify-center rounded-xl bg-base-200 transition-colors group-hover:bg-primary/10"
+
         >
           <span className="text-4xl" role="img" aria-label={nameBn}>
             {image}
@@ -50,9 +43,8 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Name and unit */}
         <div className="min-w-0 flex-1">
           <h3
-            className="line-clamp-2 text-base font-bold leading-snug
-                         text-base-content transition-colors
-                         group-hover:text-primary"
+            className="line-clamp-2 text-base font-bold leading-snug text-base-content transition-colors group-hover:text-primary"
+
           >
             {nameBn}
           </h3>

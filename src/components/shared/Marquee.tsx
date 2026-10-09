@@ -51,7 +51,7 @@ const Marquee = async () => {
                   `${toBanglaNumber(item.change.pct)}`) ||
                   (item.change.dir === "down" &&
                     `${toBanglaNumber(String(item.change.pct).slice(1))}`) ||
-                  (item.change.dir === "flat" && `০.০`)}
+                  (item.change.dir === "flat" && `${toBanglaNumber(item.change.pct)}`)}
                 %
               </span>
             </span>
