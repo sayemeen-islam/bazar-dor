@@ -55,17 +55,30 @@ const Navbar = ({ categories }: { categories: INavbarProps[] }) => {
     
 
       {/* categories */}
-      <div className="border border-base-200 ">
-        <div className="max-w-6xl mx-auto  py-2 flex gap-8 pl-2">
-          {categories.map((category) => (
-          <Link  href={`/category/${category.slug}`}  key={category.id} className={`flex items-center gap-1 ${pathname === `/category/${category.slug}` ? 'btn btn-primary btn-sm rounded-lg': 'btn btn-ghost btn-sm rounded-lg'}`} >
-              <span >{category.icon}</span>
-              <p >{category.nameBn}</p>
-            </Link>
-          ))}
-        </div>
-      </div>
+
+<div className="border border-base-200">
+  <div className="max-w-6xl mx-auto py-2 px-2 sm:px-4">
+    <div className="flex items-center gap-2 sm:gap-4 lg:gap-8 overflow-x-auto whitespace-nowrap scrollbar-hide">
+      {categories.map((category) => {
+        const isActive = pathname === `/category/${category.slug}`;
+
+        return (
+          <Link
+            href={`/category/${category.slug}`}
+            key={category.id}
+            className={`btn btn-sm shrink-0 rounded-lg ${
+              isActive ? "btn-primary" : "btn-ghost"
+            }`}
+          >
+            <span>{category.icon}</span>
+            <span>{category.nameBn}</span>
+          </Link>
+        );
+      })}
     </div>
+  </div>
+</div>
+</div>
   );
 };
 

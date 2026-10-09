@@ -8,7 +8,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const { slug, nameBn, image, unit, today, change } = product;
+  const { id, nameBn, image, unit, today, change } = product;
 
   const changeText =
     change.dir === "up"
@@ -26,7 +26,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link
-      href={`/product/${slug}`}
+      href={`/product/${id}`}
       className="group block rounded-2xl border border-base-200
                  bg-base-100 p-4 transition-all duration-200
                  hover:-translate-y-1 hover:border-primary/50

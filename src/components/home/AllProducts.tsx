@@ -8,7 +8,7 @@ const AllProducts = async () => {
   const data: IProduct[] = await res.json();
   console.log("from all products", data);
   return (
-  <div className='max-w-6xl mx-auto mb-25'>
+  <div id='সব-পণ্য' className='max-w-6xl mx-auto mb-25'>
     <h2 className='text-2xl font-bold mb-2'>
       সব পণ্য
     </h2>
