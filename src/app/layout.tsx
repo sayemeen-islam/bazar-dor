@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col ">
         <Navbar categories = {categories}></Navbar>
         <Marquee></Marquee>
-        <main className="min-h-[65vh]">{children}</main>
+        <main className="min-h-[65vh] ">{children}</main>
         <Footer></Footer>
       </body>
     </html>

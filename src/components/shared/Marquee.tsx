@@ -53,8 +53,8 @@ const Marquee = async () => {
               {" "}
               <span
                 className={`${
-                  (item.change.dir === "up" && "text-success") ||
-                  (item.change.dir === "down" && "text-error") ||
+                  (item.change.dir === "up" && "text-error") ||
+                  (item.change.dir === "down" && "text-success") ||
                   (item.change.dir === "flat" && "text-base-content")
                 }`}
               >
@@ -64,8 +64,8 @@ const Marquee = async () => {
               </span>
               <span
                 className={`${
-                  (item.change.dir === "up" && "text-success") ||
-                  (item.change.dir === "down" && "text-error") ||
+                  (item.change.dir === "up" && "text-error") ||
+                  (item.change.dir === "down" && "text-success") ||
                   (item.change.dir === "flat" && "text-base-content")
                 }`}
               >

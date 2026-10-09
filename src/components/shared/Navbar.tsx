@@ -22,16 +22,16 @@ const Navbar = ({ categories }: { categories: INavbarProps[] }) => {
         <div className="flex justify-between items-center max-w-6xl mx-auto  py-3 ">
           {/* Left */}
           <div className="flex items-center gap-3">
-            <Avatar className="w-12 h-12 rounded-lg bg-accent ">
+         <Link href={'/'}>   <Avatar className="w-12 h-12 rounded-lg bg-accent ">
               <Avatar.Image
                 alt="Bazar Dor Logo"
                 src={logo.src}
                 className="w-1/2 h-1/2 object-contain mx-auto  mt-3"
               />
-            </Avatar>
+            </Avatar></Link>
 
-            <div className="leading-tight">
-              <h2 className="text-lg font-bold text-base-content">বাজার দর</h2>
+            <div className="leading-tight"><Link href={'/'}>  
+              <h2 className="text-lg font-bold text-base-content">বাজার দর</h2></Link>
 
               <p className="text-xs text-base-content/60 mt-1">{date}</p>
             </div>
