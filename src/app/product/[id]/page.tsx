@@ -2,6 +2,7 @@ import baseUrl from "@/services/baseUrl";
 import { IProduct } from "@/types/product";
 import { toBanglaNumber } from "@/utils/number";
 import { translateUnit } from "@/utils/translations";
+import { notFound } from "next/navigation";
 import { FaChevronRight } from "react-icons/fa";
 
 // interface ProductDetailsProps {
@@ -15,8 +16,18 @@ const ProductDetailsPage = async ({
 }) => {
   const { id } = await params;
   const res = await fetch(`${baseUrl}/products/${id}`);
-  const data: IProduct = await res.json();
 
+  if (res.status === 404) {
+    notFound();
+  }
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch products");
+  }
+  const data: IProduct = await res.json();
+  if (!data) {
+    notFound();
+  }
   const allMinimumPrices = data?.markets.map((market) => market.min);
   const allMaximumPrices = data?.markets.map((market) => market.max);
 
@@ -70,14 +81,20 @@ const ProductDetailsPage = async ({
             <p className="mt-2 text-[0.95rem] text-base-content">
               গতকালের তুলনায় আজ দাম{" "}
               <span className="font-bold">
-                {data.change.dir === "up" ? "বেড়েছে" : data.change.dir === "down"? "কমেছে":"বাড়েনি"}
+                {data.change.dir === "up"
+                  ? "বেড়েছে"
+                  : data.change.dir === "down"
+                    ? "কমেছে"
+                    : "বাড়েনি"}
               </span>{" "}
-              <span className={`${data.change.dir === "flat" && 'hidden'}`}>·</span>{" "}
+              <span className={`${data.change.dir === "flat" && "hidden"}`}>
+                ·
+              </span>{" "}
               {(data.change.dir === "up" &&
                 `${toBanglaNumber(data.today - data.yesterday)}`) ||
                 (data.change.dir === "down" &&
                   `${toBanglaNumber(data.yesterday - data.today)}`)}{" "}
-              {data.change.dir !== "flat" && 'টাকা'}
+              {data.change.dir !== "flat" && "টাকা"}
             </p>
           </div>
 

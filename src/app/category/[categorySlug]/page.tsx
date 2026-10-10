@@ -3,6 +3,7 @@ import ProductCard from "@/components/home/ProductCard";
 import baseUrl from "@/services/baseUrl";
 import { IProduct } from "@/types/product";
 import { toBanglaNumber } from "@/utils/number";
+import { notFound } from "next/navigation";
 
 const CategoryPage = async ({
   params,
@@ -13,8 +14,21 @@ const CategoryPage = async ({
 
   const res = await fetch(`${baseUrl}/products?category=${categorySlug}`);
 
+if (res.status === 404) {
+  notFound();
+}
+
+  if (!res.ok) {
+  throw new Error("Failed to fetch products");
+}
+
   const data: IProduct[] = await res.json();
+  
   const firstData = data[0];
+  
+  if(!firstData){
+    notFound()
+  }
 
   return (
     <div className="max-w-6xl mx-auto my-8 mb-30">

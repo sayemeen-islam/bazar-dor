@@ -5,6 +5,9 @@ import Navbar from "@/components/shared/Navbar";
 import baseUrl from "@/services/baseUrl";
 import Marquee from "@/components/shared/Marquee";
 import Footer from "@/components/shared/Footer";
+import { Suspense } from "react";
+import { Toaster } from "react-hot-toast";
+
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
@@ -19,6 +22,10 @@ export const metadata: Metadata = {
 
 const getCategories = async () => {
   const res = await fetch(`${baseUrl}/categories`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch categories");
+  }
   const data = await res.json();
   return data;
 };
@@ -33,9 +40,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col ">
         <Navbar categories = {categories}></Navbar>
-        <Marquee></Marquee>
+       <Marquee></Marquee>
         <main className="min-h-[65vh] ">{children}</main>
         <Footer></Footer>
+         <Toaster />
       </body>
     </html>
   );
