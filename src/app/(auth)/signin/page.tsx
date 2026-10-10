@@ -47,6 +47,20 @@ const SignInPage = () => {
       console.log(error);
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
+
+  const handleGitHubSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "github",
+    });
+  };
+
+
   return (
     <div className="flex flex-col justify-center items-center max-w-6xl mx-auto mt-12 mb-25">
       <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
@@ -141,7 +155,7 @@ const SignInPage = () => {
             <div className="flex gap-2">
               <Button
                 className="w-full rounded-lg bg-surface border border-border font-semibold text-foreground hover:bg-accent-soft"
-                type="submit"
+                onClick={handleGoogleSignIn}
               >
                 <FcGoogle />
                 Google দিয়েচালিয়ে যান
@@ -149,7 +163,7 @@ const SignInPage = () => {
 
               <Button
                 className="w-full rounded-lg bg-surface border border-border font-semibold text-foreground  hover:bg-accent-soft"
-                type="submit"
+                onClick={handleGitHubSignIn}
               >
                 <FaGithub />
                 GitHub দিয়ে চালিয়ে যান{" "}
