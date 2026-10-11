@@ -1,4 +1,4 @@
-import { authClient, } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { Spinner } from "@heroui/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -7,52 +7,63 @@ import toast from "react-hot-toast";
 import { BiLogOut } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import { LuUserRound } from "react-icons/lu";
-import {Skeleton} from "@heroui/react";
+import { Skeleton } from "@heroui/react";
 import { DiVim } from "react-icons/di";
+import Image from "next/image";
 
 const UserInfo = () => {
   const { data: session, isPending } = authClient.useSession();
   console.log({ session, isPending });
 
-  
-if (isPending) {
-  return (
-    <div className="flex items-center gap-3">
-      <Skeleton className="h-11 w-11 shrink-0 rounded-lg" />
-      <div className="flex items-center gap-2">
-        <Skeleton className="h-5 w-20 rounded-md" />
-        <Skeleton className="h-4 w-4 rounded-full" />
+  if (isPending) {
+    return (
+      <div className="flex items-center gap-3">
+        <Skeleton className="h-11 w-11 shrink-0 rounded-lg" />
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-5 w-20 rounded-md" />
+          <Skeleton className="h-4 w-4 rounded-full" />
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   const user = session?.user;
   console.log(user, "userinfo");
+
   const handleSignOut = async () => {
-  const { error } = await authClient.signOut();
+    const { error } = await authClient.signOut();
 
-  if (error) {
-    toast.error("লগআউট করা যায়নি।");
-    return;
-  }
+    if (error) {
+      toast.error("লগআউট করা যায়নি।");
+      return;
+    }
 
-  await authClient.getSession();
+    await authClient.getSession();
 
-  toast.success("সফলভাবে লগআউট হয়েছে।");
-};
+    toast.success("সফলভাবে লগআউট হয়েছে।");
+  };
+
   return (
     <div>
       {user ? (
         <div className="relative flex items-center ">
-             <Link href={'/profile'} className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-primary/20 bg-primary/10 text-lg font-bold text-primary">
-                {user?.name
-                  ?.trim()
-                  .split(/\s+/)
-                  .map((part) => part.charAt(0).toUpperCase())
-                  .slice(0, 2)
-                  .join("")}
-              </Link>
+          <Link
+            href={"/profile"}
+            className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary text-2xl font-bold text-primary-content"
+          >
+            {user.image ? (
+              <Image
+                src={user.image}
+                alt={`${user.name || "User"}'s profile picture`}
+                width={64}
+                height={64}
+                className="size-full object-cover"
+                unoptimized
+              />
+            ) : (
+              user.name?.trim().charAt(0).toUpperCase() || "U"
+            )}
+          </Link>
           <div className="dropdown dropdown-end">
             {/* Dropdown trigger */}
             <div
@@ -60,7 +71,6 @@ if (isPending) {
               role="button"
               className="flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 transition"
             >
-           
               <span className="text-lg font-semibold text-base-content">
                 {user?.name?.split(" ")[0]}
               </span>
@@ -106,7 +116,6 @@ if (isPending) {
               {/* Logout */}
               <li>
                 <button
-                 
                   onClick={handleSignOut}
                   className="gap-3 rounded-lg py-2.5 text-error hover:bg-error/10 hover:text-error"
                 >
@@ -137,7 +146,5 @@ if (isPending) {
 };
 
 export default UserInfo;
-
-
 
 //  Duplicate collection slot "combo-box.inputGroup". Use a unique, namespaced name (e.g. "tabs.listContainer", "menu.popover").

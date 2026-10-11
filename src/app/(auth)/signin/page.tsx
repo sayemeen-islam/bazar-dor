@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   FieldError,
@@ -20,6 +20,15 @@ import toast from "react-hot-toast";
 
 const SignInPage = () => {
 
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("reason") === "auth-required") {
+      toast.error("চালিয়ে যেতে অনুগ্রহ করে সাইন ইন করুন।");
+    }
+    window.history.replaceState({}, "", "/signin");
+  }, []);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -8,7 +8,6 @@ import Footer from "@/components/shared/Footer";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 
-
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
   weight: ["400", "500", "600", "700"],
@@ -39,11 +38,15 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
       className={`${hindSiliguri.className} h-full antialiased bg-base-200 text-base-content`}
     >
       <body className="min-h-full flex flex-col ">
-        <Navbar categories = {categories}></Navbar>
-       <Marquee></Marquee>
+        <Navbar categories={categories}></Navbar>
+        <Marquee></Marquee>
         <main className="min-h-[65vh] ">{children}</main>
         <Footer></Footer>
-         <Toaster />
+        <Toaster
+          toastOptions={{
+            duration: 3000,
+          }}
+        />
       </body>
     </html>
   );

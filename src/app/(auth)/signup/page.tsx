@@ -55,12 +55,11 @@ const SignUpPage = () => {
     });
   };
 
-   const handleGitHubSignUp=async()=>{
+  const handleGitHubSignUp = async () => {
     await authClient.signIn.social({
-        provider: "github"
-    })
-  }
-
+      provider: "github",
+    });
+  };
 
   return (
     <div className="flex flex-col justify-center items-center max-w-6xl mx-auto my-15">
@@ -95,6 +94,17 @@ const SignUpPage = () => {
                   />
                   <FieldError />
                 </TextField>
+                <TextField name="image" type="url">
+                  <Label className="text-sm font-semibold text-foreground">
+                    ছবি
+                  </Label>
+                  <Input
+                    className={`border  border-border bg-surface rounded-lg`}
+                    placeholder="ছবির URL দিন"
+                  />
+                  <FieldError />
+                </TextField>
+
 
                 <TextField
                   isRequired
@@ -222,7 +232,11 @@ const SignUpPage = () => {
           </div>
         </Surface>
       </div>
-      <Link href={'/'}><p className="text-center text-foreground/60 text-sm mt-6 mb-20 ">← হোম পেজে ফিরে যান</p></Link>
+      <Link href={"/"}>
+        <p className="text-center text-foreground/60 text-sm mt-6 mb-20 ">
+          ← হোম পেজে ফিরে যান
+        </p>
+      </Link>
     </div>
   );
 };

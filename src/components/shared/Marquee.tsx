@@ -5,12 +5,9 @@ import { translateUnit } from "@/utils/translations";
 import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 
-
-
 const Marquee = async () => {
   const res = await fetch(`${baseUrl}/products`);
   const data: IProduct[] = await res.json();
-  
 
   return (
     <div className="border border-base-300 bg-base-100">
@@ -51,7 +48,8 @@ const Marquee = async () => {
                   `${toBanglaNumber(item.change.pct)}`) ||
                   (item.change.dir === "down" &&
                     `${toBanglaNumber(String(item.change.pct).slice(1))}`) ||
-                  (item.change.dir === "flat" && `${toBanglaNumber(item.change.pct)}`)}
+                  (item.change.dir === "flat" &&
+                    `${toBanglaNumber(item.change.pct)}`)}
                 %
               </span>
             </span>

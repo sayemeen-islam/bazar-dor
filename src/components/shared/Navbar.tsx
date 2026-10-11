@@ -18,7 +18,7 @@ const Navbar = ({ categories }: { categories: INavbarProps[] }) => {
   });
   const pathname = usePathname();
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-100 sticky top-0 z-50">
       <div className="flex justify-between items-center max-w-6xl mx-auto  py-3 ">
         {/* Left */}
         <div className="flex items-center gap-3">
