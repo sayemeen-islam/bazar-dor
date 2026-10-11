@@ -1,5 +1,4 @@
 import CategoryCardList from "@/components/category/CategoryCardList";
-import ProductCard from "@/components/home/ProductCard";
 import baseUrl from "@/services/baseUrl";
 import { IProduct } from "@/types/product";
 import { toBanglaNumber } from "@/utils/number";

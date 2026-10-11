@@ -2,7 +2,6 @@ import baseUrl from "@/services/baseUrl";
 import { IProduct } from "@/types/product";
 import { toBanglaNumber } from "@/utils/number";
 import { translateUnit } from "@/utils/translations";
-import Link from "next/link";
 import MarqueeText from "react-marquee-text";
 
 const Marquee = async () => {

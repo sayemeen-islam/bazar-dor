@@ -1,4 +1,3 @@
-
 export default function Loading() {
   return (
     <div className="max-w-6xl mx-auto my-8 mb-30">

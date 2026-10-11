@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -45,9 +44,7 @@ export default function ProfilePage() {
   return (
     <main className="mx-auto min-h-screen max-w-5xl px-4 py-10 sm:py-14">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-base-content">
-          আমার প্রোফাইল
-        </h1>
+        <h1 className="text-3xl font-bold text-base-content">আমার প্রোফাইল</h1>
         <p className="mt-2 text-base-content/60">
           আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
         </p>
@@ -82,10 +79,7 @@ export default function ProfilePage() {
             </div>
           </div>
 
-          <Link
-            href="/profile/update"
-            className="btn btn-primary gap-2"
-          >
+          <Link href="/profile/update" className="btn btn-primary gap-2">
             <FiEdit2 size={18} />
             প্রোফাইল আপডেট
           </Link>

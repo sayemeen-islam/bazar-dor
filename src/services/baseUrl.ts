@@ -1,3 +1,3 @@
-const baseUrl = 'https://openapi.programming-hero.com/api/bazardor'
+const baseUrl = "https://openapi.programming-hero.com/api/bazardor";
 
-export default baseUrl
+export default baseUrl;

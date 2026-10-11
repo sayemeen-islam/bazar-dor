@@ -1,14 +1,10 @@
 import { authClient } from "@/lib/auth-client";
-import { Spinner } from "@heroui/react";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import React from "react";
 import toast from "react-hot-toast";
 import { BiLogOut } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
 import { LuUserRound } from "react-icons/lu";
 import { Skeleton } from "@heroui/react";
-import { DiVim } from "react-icons/di";
 import Image from "next/image";
 
 const UserInfo = () => {
@@ -128,16 +124,18 @@ const UserInfo = () => {
         </div>
       ) : (
         <div className="flex items-center sm:gap-3">
-          <Link href="/signin" className="btn btn-sm btn-ghost text-sm font-medium">
-            
-              সাইন ইন
-            
+          <Link
+            href="/signin"
+            className="btn btn-sm btn-ghost text-sm font-medium"
+          >
+            সাইন ইন
           </Link>
 
-          <Link href="/signup" className="btn btn-primary btn-sm px-4 text-sm font-medium">
-            
-              সাইন আপ
-           
+          <Link
+            href="/signup"
+            className="btn btn-primary btn-sm px-4 text-sm font-medium"
+          >
+            সাইন আপ
           </Link>
         </div>
       )}
@@ -146,5 +144,3 @@ const UserInfo = () => {
 };
 
 export default UserInfo;
-
-

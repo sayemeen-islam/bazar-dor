@@ -15,18 +15,22 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 const SignUpPage = () => {
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const user = Object.fromEntries(formData.entries()) as {
+
+    const { confirmPassword, ...user } = Object.fromEntries(
+      formData.entries(),
+    ) as {
       name: string;
       image: string;
       email: string;
@@ -36,19 +40,20 @@ const SignUpPage = () => {
 
     const { data, error } = await authClient.signUp.email({
       ...user,
-      callbackURL: "/dashboard",
+      image: user.image || undefined,
     });
 
-    if (data) {
-      toast.success("অ্যাকাউন্ট তৈরি সফল হয়েছে!");
-      redirect("/signin");
-      console.log(data);
-    }
+    console.log("Signup data:", data);
+    console.log("Signup error:", error);
 
     if (error) {
       toast.error("অ্যাকাউন্ট তৈরি করা যায়নি। আবার চেষ্টা করুন।");
-      console.log(error);
+      console.error(error);
+      return;
     }
+
+    toast.success("এগিয়ে যেতে সাইন ইন করুন।");
+    router.replace("/signin");
   };
 
   const handleGoogleSignUp = async () => {
