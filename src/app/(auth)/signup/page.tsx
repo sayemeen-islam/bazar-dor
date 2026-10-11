@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+
+import { useState } from "react";
 import {
   Button,
   FieldError,
@@ -14,7 +15,6 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
-
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
@@ -24,9 +24,11 @@ const SignUpPage = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries()) as {
       name: string;
+      image: string;
       email: string;
       password: string;
       confirmPassword: string;
@@ -34,7 +36,7 @@ const SignUpPage = () => {
 
     const { data, error } = await authClient.signUp.email({
       ...user,
-      callbackURL: "/dashboard", // A URL to redirect to after the user verifies their email (optional)
+      callbackURL: "/dashboard",
     });
 
     if (data) {
@@ -52,27 +54,31 @@ const SignUpPage = () => {
   const handleGoogleSignUp = async () => {
     await authClient.signIn.social({
       provider: "google",
+      callbackURL: "/?socialSignIn=success",
     });
   };
 
   const handleGitHubSignUp = async () => {
     await authClient.signIn.social({
       provider: "github",
+      callbackURL: "/?socialSignIn=success",
     });
   };
 
   return (
-    <div className="flex flex-col justify-center items-center max-w-6xl mx-auto my-15">
-      <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
+    <main className="mx-auto my-8 flex w-full max-w-6xl flex-col items-center px-4 sm:my-12 md:my-15">
+      <h1 className="text-center text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
         অ্যাকাউন্ট তৈরি করুন
       </h1>
-      <p className="text-sm font-normal leading-6 text-foreground/70 mb-8">
+
+      <p className="mb-6 mt-2 text-center text-sm leading-6 text-foreground/70 sm:mb-8">
         বিনা খরচে সাইন আপ করে সব বিস্তারিত দাম দেখুন।
       </p>
-      <div className="flex items-center justify-center rounded-xl  border bg-surface p-5">
-        <Surface className=" min-w-[380px]">
+
+      <div className="w-full max-w-md rounded-xl border border-border bg-surface p-3 sm:p-5">
+        <Surface className="w-full min-w-0">
           <Form onSubmit={onSubmit}>
-            <Fieldset className="w-full ">
+            <Fieldset className="w-full min-w-0">
               <Fieldset.Group>
                 <TextField
                   isRequired
@@ -89,22 +95,11 @@ const SignUpPage = () => {
                     নাম
                   </Label>
                   <Input
-                    className={`border  border-border bg-surface rounded-lg`}
+                    className="w-full rounded-lg border border-border bg-surface"
                     placeholder="যেমন: রহিম উদ্দিন"
                   />
                   <FieldError />
                 </TextField>
-                <TextField name="image" type="url">
-                  <Label className="text-sm font-semibold text-foreground">
-                    ছবি
-                  </Label>
-                  <Input
-                    className={`border  border-border bg-surface rounded-lg`}
-                    placeholder="ছবির URL দিন"
-                  />
-                  <FieldError />
-                </TextField>
-
 
                 <TextField
                   isRequired
@@ -123,7 +118,7 @@ const SignUpPage = () => {
                     ইমেইল
                   </Label>
                   <Input
-                    className={`border  border-border bg-surface rounded-lg`}
+                    className="w-full rounded-lg border border-border bg-surface"
                     placeholder="you@example.com"
                   />
                   <FieldError />
@@ -146,12 +141,12 @@ const SignUpPage = () => {
                     পাসওয়ার্ড
                   </Label>
                   <Input
-                    className={`border  border-border bg-surface rounded-lg bg-accent-soft-hover`}
+                    className="w-full rounded-lg border border-border bg-surface"
                     placeholder="কমপক্ষে ৮ অক্ষর"
                   />
-
                   <FieldError />
                 </TextField>
+
                 <TextField
                   isRequired
                   minLength={8}
@@ -171,15 +166,25 @@ const SignUpPage = () => {
                     পাসওয়ার্ড নিশ্চিত করুন
                   </Label>
                   <Input
-                    className={`border  border-border bg-surface rounded-lg`}
+                    className="w-full rounded-lg border border-border bg-surface"
                     placeholder="আবার লিখুন"
                   />
+                  <FieldError />
+                </TextField>
 
+                <TextField name="image" type="url">
+                  <Label className="text-sm font-semibold text-foreground">
+                    ছবি
+                  </Label>
+                  <Input
+                    className="w-full rounded-lg border border-border bg-surface"
+                    placeholder="ছবির URL দিন"
+                  />
                   <FieldError />
                 </TextField>
               </Fieldset.Group>
 
-              <Fieldset.Actions className="-my-2">
+              <Fieldset.Actions className="w-full">
                 <Button
                   className="w-full rounded-lg font-semibold"
                   variant="primary"
@@ -191,53 +196,56 @@ const SignUpPage = () => {
             </Fieldset>
           </Form>
 
-          <div className="space-y-3 my-4">
-            <div className="flex justify-center items-center gap-3 text-sm text-muted">
+          <div className="my-5 space-y-4">
+            <div className="flex items-center justify-center gap-3 text-sm text-muted">
               <Separator
-                className="w-[40%]  bg-separator border border-foreground/10"
+                className="flex-1 bg-separator"
                 orientation="horizontal"
               />
-              <span className="text-sm font-medium text-foreground/70">
+              <span className="shrink-0 font-medium text-foreground/70">
                 অথবা
               </span>
               <Separator
-                className="w-[40%] bg-separator border border-foreground/10"
+                className="flex-1 bg-separator"
                 orientation="horizontal"
               />
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-3">
               <Button
-                className="w-full rounded-lg bg-surface border border-border font-semibold text-foreground hover:bg-accent-soft"
+                className="w-full rounded-lg border border-border bg-surface font-semibold text-foreground hover:bg-accent-soft"
                 onClick={handleGoogleSignUp}
               >
                 <FcGoogle />
-                Google দিয়েচালিয়ে যান
+                Google দিয়ে চালিয়ে যান
               </Button>
 
               <Button
-                className="w-full rounded-lg bg-surface border border-border font-semibold text-foreground  hover:bg-accent-soft"
+                className="w-full rounded-lg border border-border bg-surface font-semibold text-foreground hover:bg-accent-soft"
                 onClick={handleGitHubSignUp}
               >
                 <FaGithub />
-                GitHub দিয়ে চালিয়ে যান{" "}
+                GitHub দিয়ে চালিয়ে যান
               </Button>
             </div>
-            <p className="text-sm text-center font-medium -mb-2 ">
+
+            <p className="text-center text-sm font-medium">
               অ্যাকাউন্ট আছে?{" "}
-              <Link className="text-accent " href="/signin">
+              <Link className="text-accent" href="/signin">
                 সাইন ইন করুন
               </Link>
             </p>
           </div>
         </Surface>
       </div>
-      <Link href={"/"}>
-        <p className="text-center text-foreground/60 text-sm mt-6 mb-20 ">
-          ← হোম পেজে ফিরে যান
-        </p>
+
+      <Link
+        href="/"
+        className="mb-8 mt-5 text-center text-sm text-foreground/60 sm:mb-12"
+      >
+        ← হোম পেজে ফিরে যান
       </Link>
-    </div>
+    </main>
   );
 };
 

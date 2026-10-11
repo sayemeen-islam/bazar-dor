@@ -47,7 +47,7 @@ const Marquee = async () => {
                 {(item.change.dir === "up" &&
                   `${toBanglaNumber(item.change.pct)}`) ||
                   (item.change.dir === "down" &&
-                    `${toBanglaNumber(String(item.change.pct).slice(1))}`) ||
+                    `${toBanglaNumber(String(Math.abs(item.change.pct)))}`) ||
                   (item.change.dir === "flat" &&
                     `${toBanglaNumber(item.change.pct)}`)}
                 %

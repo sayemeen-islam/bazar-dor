@@ -25,7 +25,7 @@ export default function ProductCard({ product }: {product:IProduct}) {
   return (
     <Link
       href={`/product/${id}`}
-      className="group block rounded-2xl border border-base-200 bg-base-100 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="group block rounded-2xl border border-base-300 bg-base-100 p-4 transition-all duration-200 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
 
     >
       {/* Product information */}

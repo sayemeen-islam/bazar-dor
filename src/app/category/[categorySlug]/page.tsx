@@ -31,7 +31,7 @@ if (res.status === 404) {
   }
 
   return (
-    <div className="max-w-6xl mx-auto my-8 mb-30">
+    <div className="max-w-6xl mx-auto my-10 mb-20">
       <section className="rounded-2xl border border-base-300 bg-base-100 p-5 sm:p-8 mb-8">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-center">
           <div className="flex size-20 shrink-0 items-center justify-center text-6xl">

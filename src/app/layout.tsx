@@ -7,6 +7,7 @@ import Marquee from "@/components/shared/Marquee";
 import Footer from "@/components/shared/Footer";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
+import SocialSignInNotification from "@/components/home/SocialSignInNotification";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
@@ -42,6 +43,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <Marquee></Marquee>
         <main className="min-h-[65vh] ">{children}</main>
         <Footer></Footer>
+        <SocialSignInNotification></SocialSignInNotification>
         <Toaster
           toastOptions={{
             duration: 3000,

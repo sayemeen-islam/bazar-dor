@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import { useEffect } from "react";
 import {
   Button,
   FieldError,
@@ -14,40 +15,36 @@ import {
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import Link from "next/link";
-import { authClient, } from "@/lib/auth-client";
-import { redirect } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 import toast from "react-hot-toast";
 
 const SignInPage = () => {
-
-
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
 
     if (params.get("reason") === "auth-required") {
       toast.error("চালিয়ে যেতে অনুগ্রহ করে সাইন ইন করুন।");
     }
+
     window.history.replaceState({}, "", "/signin");
   }, []);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries()) as {
-     
       email: string;
       password: string;
-      
     };
 
     const { data, error } = await authClient.signIn.email({
       ...user,
-      callbackURL: "/", // A URL to redirect to after the user verifies their email (optional)
+      callbackURL: "/",
     });
 
     if (data) {
       toast.success("আপনি সফলভাবে সাইন ইন করেছেন!");
-      
       console.log(data);
     }
 
@@ -60,31 +57,32 @@ const SignInPage = () => {
   const handleGoogleSignIn = async () => {
     await authClient.signIn.social({
       provider: "google",
+      callbackURL: "/?socialSignIn=success",
     });
   };
 
   const handleGitHubSignIn = async () => {
     await authClient.signIn.social({
       provider: "github",
+      callbackURL: "/?socialSignIn=success",
     });
   };
 
-
   return (
-    <div className="flex flex-col justify-center items-center max-w-6xl mx-auto mt-12 mb-25">
-      <h1 className="text-3xl font-extrabold tracking-tight text-foreground">
+    <main className="mx-auto my-8 flex w-full max-w-6xl flex-col items-center px-4 sm:my-12 md:my-15">
+      <h1 className="text-center text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
         সাইন ইন
       </h1>
-      <p className="text-sm font-normal leading-6 text-foreground/70 mb-5">
+
+      <p className="mb-6 mt-2 max-w-lg text-center text-sm leading-6 text-foreground/70 sm:mb-8">
         বিস্তারিত দাম, বাজার তুলনা ও প্রোফাইল দেখতে অ্যাকাউন্টে ঢুকুন।
       </p>
-      <div className="flex items-center justify-center rounded-xl  border bg-surface p-5">
-        <Surface className=" min-w-[380px]">
-          <Form onSubmit={onSubmit}>
-            <Fieldset className="w-full ">
-              <Fieldset.Group>
-              
 
+      <div className="w-full max-w-md rounded-xl border border-border bg-surface p-3 sm:p-5">
+        <Surface className="w-full min-w-0">
+          <Form onSubmit={onSubmit}>
+            <Fieldset className="w-full min-w-0">
+              <Fieldset.Group>
                 <TextField
                   isRequired
                   name="email"
@@ -102,7 +100,7 @@ const SignInPage = () => {
                     ইমেইল
                   </Label>
                   <Input
-                    className={`border  border-border bg-surface rounded-lg`}
+                    className="w-full rounded-lg border border-border bg-surface"
                     placeholder="you@example.com"
                   />
                   <FieldError />
@@ -119,22 +117,19 @@ const SignInPage = () => {
                     }
                     return null;
                   }}
-                 
                 >
                   <Label className="text-sm font-semibold text-foreground">
                     পাসওয়ার্ড
                   </Label>
                   <Input
-                    className={`border  border-border bg-surface rounded-lg bg-accent-soft-hover`}
+                    className="w-full rounded-lg border border-border bg-surface"
                     placeholder="কমপক্ষে ৮ অক্ষর"
                   />
-
                   <FieldError />
                 </TextField>
-            
               </Fieldset.Group>
 
-              <Fieldset.Actions className="-my-2">
+              <Fieldset.Actions className="w-full">
                 <Button
                   className="w-full rounded-lg font-semibold"
                   variant="primary"
@@ -146,49 +141,56 @@ const SignInPage = () => {
             </Fieldset>
           </Form>
 
-          <div className="space-y-3 my-4">
-            <div className="flex justify-center items-center gap-3 text-sm text-muted">
+          <div className="my-5 space-y-4">
+            <div className="flex items-center justify-center gap-3 text-sm text-muted">
               <Separator
-                className="w-[40%]  bg-separator border border-foreground/10"
+                className="flex-1 bg-separator"
                 orientation="horizontal"
               />
-              <span className="text-sm font-medium text-foreground/70">
+              <span className="shrink-0 font-medium text-foreground/70">
                 অথবা
               </span>
               <Separator
-                className="w-[40%] bg-separator border border-foreground/10"
+                className="flex-1 bg-separator"
                 orientation="horizontal"
               />
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col gap-3">
               <Button
-                className="w-full rounded-lg bg-surface border border-border font-semibold text-foreground hover:bg-accent-soft"
+                className="w-full rounded-lg border border-border bg-surface font-semibold text-foreground hover:bg-accent-soft"
                 onClick={handleGoogleSignIn}
               >
                 <FcGoogle />
-                Google দিয়েচালিয়ে যান
+                Google দিয়ে চালিয়ে যান
               </Button>
 
               <Button
-                className="w-full rounded-lg bg-surface border border-border font-semibold text-foreground  hover:bg-accent-soft"
+                className="w-full rounded-lg border border-border bg-surface font-semibold text-foreground hover:bg-accent-soft"
                 onClick={handleGitHubSignIn}
               >
                 <FaGithub />
-                GitHub দিয়ে চালিয়ে যান{" "}
+                GitHub দিয়ে চালিয়ে যান
               </Button>
             </div>
-            <p className="text-sm flex justify-center gap-1 font-medium -mb-2 ">
-              <span>অ্যাকাউন্ট নেই?</span> 
-              <Link className="text-accent " href="/signup">
+
+            <p className="flex flex-wrap justify-center gap-1 text-center text-sm font-medium">
+              <span>অ্যাকাউন্ট নেই?</span>
+              <Link className="text-accent" href="/signup">
                 সাইন আপ করুন
               </Link>
             </p>
           </div>
         </Surface>
       </div>
-      <Link href={'/'}><p className="text-center text-foreground/60 text-sm mt-6 mb-20 ">← হোম পেজে ফিরে যান</p></Link>
-    </div>
+
+      <Link
+        href="/"
+        className="mb-8 mt-5 text-center text-sm text-foreground/60 sm:mb-12"
+      >
+        ← হোম পেজে ফিরে যান
+      </Link>
+    </main>
   );
 };
 

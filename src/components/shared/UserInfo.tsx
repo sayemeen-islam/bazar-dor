@@ -49,7 +49,7 @@ const UserInfo = () => {
         <div className="relative flex items-center ">
           <Link
             href={"/profile"}
-            className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary text-2xl font-bold text-primary-content"
+            className="flex size-11 items-center justify-center overflow-hidden rounded-xl bg-primary text-2xl font-bold text-primary-content h-10 w-10 shrink-0 sm:h-12 sm:w-12"
           >
             {user.image ? (
               <Image
@@ -71,7 +71,7 @@ const UserInfo = () => {
               role="button"
               className="flex cursor-pointer items-center gap-2 rounded-lg px-3 py-2 transition"
             >
-              <span className="text-lg font-semibold text-base-content">
+              <span className="text-lg font-semibold text-base-content hidden sm:inline">
                 {user?.name?.split(" ")[0]}
               </span>
 
@@ -127,17 +127,17 @@ const UserInfo = () => {
           </div>
         </div>
       ) : (
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/signin">
-            <button className="btn btn-sm btn-ghost text-sm font-medium">
+        <div className="flex items-center sm:gap-3">
+          <Link href="/signin" className="btn btn-sm btn-ghost text-sm font-medium">
+            
               সাইন ইন
-            </button>
+            
           </Link>
 
-          <Link href="/signup">
-            <button className="btn btn-primary btn-sm px-4 text-sm font-medium">
+          <Link href="/signup" className="btn btn-primary btn-sm px-4 text-sm font-medium">
+            
               সাইন আপ
-            </button>
+           
           </Link>
         </div>
       )}
@@ -147,4 +147,4 @@ const UserInfo = () => {
 
 export default UserInfo;
 
-//  Duplicate collection slot "combo-box.inputGroup". Use a unique, namespaced name (e.g. "tabs.listContainer", "menu.popover").
+

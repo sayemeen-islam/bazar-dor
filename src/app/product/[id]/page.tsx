@@ -57,7 +57,7 @@ const ProductDetailsPage = async ({
   );
 
   return (
-    <main className="mx-auto max-w-6xl py-8  lg:py-12 mb-20">
+    <main className="mx-auto max-w-6xl py-8  lg:py-12 mb-15">
       <div className="flex gap-2 pb-8  items-center text-sm">
         <FaChevronRight size={10} />
         <span>{data.categoryNameBn}</span>
