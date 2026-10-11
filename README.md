@@ -1,6 +1,6 @@
-# 🛒 বাজার দর | BazarDor
+# 🛒 বাজার দর | Bazar Dor
 
-বাজার দর (BazarDor) is a responsive Bangla market price tracking application that helps users explore the prices of essential daily products in Bangladesh. Users can compare market prices, browse products by category, view daily price changes, and manage their accounts.
+বাজার দর (Bazar Dor) is a responsive Bangla market price tracking application that helps users explore the prices of essential daily products in Bangladesh. Users can compare market prices, browse products by category, view daily price changes, and manage their accounts.
 
 ## 🔗 Live Link
 
