@@ -38,7 +38,7 @@ const ProductDetailsPage = async ({
     data?.change.dir === "up"
       ? `▲ ${toBanglaNumber(data?.change.pct)}%`
       : data?.change.dir === "down"
-        ? `▼ ${String(toBanglaNumber(data?.change.pct)).slice(1)}%`
+        ? `▼ ${toBanglaNumber(Math.abs(data?.change.pct))}%`
         : `— ${toBanglaNumber(data.change.pct)}%`;
 
   const changeColor =
@@ -132,7 +132,7 @@ const ProductDetailsPage = async ({
                 label: "গড় দাম",
                 price: averagePrice,
                 color: "text-success",
-                market: "প্রতি কেজি-এর হিসাবে",
+                market: `প্রতি ${translateUnit(data.unit)}-এর হিসাবে`,
               },
             ].map((item) => (
               <div
@@ -174,7 +174,7 @@ const ProductDetailsPage = async ({
 
               <tbody className="text-[14px]">
                 {data.markets.map((market) => {
-                  const average = (market.min + market.max) / 2;
+                 const average = ((market.min + market.max) / 2).toFixed(2);
 
                   return (
                     <tr

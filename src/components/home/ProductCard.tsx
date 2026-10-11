@@ -12,8 +12,8 @@ export default function ProductCard({ product }: {product:IProduct}) {
     change.dir === "up"
       ? `▲ ${toBanglaNumber(change.pct)}%`
       : change.dir === "down"
-        ? `▼ ${String(toBanglaNumber(change.pct)).slice(1)}%`
-        : `— ${toBanglaNumber(change.pct)}%`;
+        ? `▼ ${toBanglaNumber(Math.abs(change.pct))}%`
+        : `— ${toBanglaNumber(change.pct.toFixed(1))}%`;
 
   const changeColor =
     change.dir === "up"

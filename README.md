@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛒 বাজার দর | BazarDor
 
-## Getting Started
+বাজার দর (BazarDor) is a responsive Bangla market price tracking application that helps users explore the prices of essential daily products in Bangladesh. Users can compare market prices, browse products by category, view daily price changes, and manage their accounts.
 
-First, run the development server:
+## 🔗 Live Link
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[**View BazarDor Live →**](https://bazar-dor-prices.vercel.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Technologies Used
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- DaisyUI & HeroUI
+- Better Auth
+- MongoDB
+- React Hot Toast
+- React Icons
+- JSON
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Key Features
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Product Library:** Browse essential daily products with Bengali names, prices, units, and percentage changes.
+- **Daily Price Changes:** Explore products with increasing and decreasing prices through dedicated homepage sections, including their percentage changes.
+- **Product Details:** View product descriptions, categories, units, minimum prices, maximum prices, average prices, and market-wise price comparisons.
+- **Category Browsing & Sorting:** Browse products by category and sort them by default order, lowest price, or highest price.
+- **Authentication:** Sign up and sign in using email and password or Google and GitHub social login, powered by Better Auth.
+- **Protected Routes:** Restrict access to product details and other protected pages to authenticated users.
+- **Profile Management:** View profile information and update the user's name.
+- **Toast Notifications:** Display success and error notifications for authentication actions.
+- **Responsive Design:** Provide a user-friendly experience across mobile, tablet, and desktop screens.
+- **Loading Skeletons & Custom 404 Pages:** Display loading placeholders while product data loads and provide helpful navigation for invalid routes.

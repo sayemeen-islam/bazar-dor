@@ -33,7 +33,7 @@ const CategoryCardList = ({ products }: { products: IProduct[] }) => {
       <section className="rounded-2xl flex justify-end  border border-base-300 bg-base-100 px-8 pt-3 mb-8">
         <div className="mt-2 mb-6 flex flex-col gap-1 justify-center sm:flex-row sm:gap-0 sm:items-center ">
           <Select
-            className="w-full sm"
+            className="w-full sm:w-auto"
             value={sortBy}
             onChange={(value) => {
               if (value) {

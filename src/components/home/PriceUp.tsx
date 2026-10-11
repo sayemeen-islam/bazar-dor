@@ -21,8 +21,8 @@ const PriceUp = async () => {
         </h2>
       </div>
 
-      {/* Responsive product grid */}
-      <div className="grid grid-cols-1 gap-3 min-[450px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+      {/* Product grid */}
+      <div className="grid grid-cols-1 gap-3 min-[450px]:grid-cols-2 sm:gap-4 lg:grid-cols-3 ">
         {sortedData.slice(0, 6).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
